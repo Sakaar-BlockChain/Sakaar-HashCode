@@ -1,4 +1,7 @@
 #include "hash_code.h"
+#ifdef WIN32
+#include <stdio.h>
+#endif
 
 #define SHA2_ROTR(x, n)   (((x) >> (n)) | ((x) << ((sizeof(x) << 3) - (n))))
 #define SHA256_F1(x) (SHA2_ROTR(x,  2) ^ SHA2_ROTR(x, 13) ^ SHA2_ROTR(x, 22))
