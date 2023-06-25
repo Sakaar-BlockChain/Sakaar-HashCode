@@ -82,7 +82,7 @@ void transform(const unsigned char *message, unsigned block_nb, SHA256_DATA *sha
     }
 }
 SHA256_DATA *SHA256_init() {
-    SHA256_DATA *result = skr_malloc(sizeof(SHA256_DATA));
+    SHA256_DATA *result = malloc(sizeof(SHA256_DATA));
     result->m_h[0] = 0x6a09e667;
     result->m_h[1] = 0xbb67ae85;
     result->m_h[2] = 0x3c6ef372;
@@ -140,7 +140,7 @@ void sha256_hash(struct string_st *res, const struct string_st *str) {
     SHA256_DATA *ctx = SHA256_init();
     update((unsigned char *) str->data, str->size, ctx);
     final(digest, ctx);
-    skr_free(ctx);
+    free(ctx);
 
     string_resize(res, 64);
     for (int i = 0; i < 32; i++) sprintf(res->data + i * 2, "%02x", digest[i]);
